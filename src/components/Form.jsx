@@ -12,6 +12,7 @@ class Form extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
       onInputChange,
       onSaveButtonClick,
@@ -117,14 +118,18 @@ class Form extends React.Component {
 
           <div>
             <label htmlFor="checkBox">
-              <input
-                data-testid="trunfo-input"
-                type="checkbox"
-                id="super"
-                name="cardTrunfo"
-                checked={ cardTrunfo }
-                onChange={ onInputChange }
-              />
+              {hasTrunfo ? (
+                <p>Você já tem um Super Trunfo em seu baralho</p>
+              ) : (
+                <input
+                  data-testid="trunfo-input"
+                  type="checkbox"
+                  id="super"
+                  name="cardTrunfo"
+                  checked={ cardTrunfo }
+                  onChange={ onInputChange }
+                />
+              )}
               Super Trybe Trunfo
             </label>
           </div>
@@ -153,6 +158,7 @@ Form.propTypes = {
   cardImage: Proptype.string,
   cardRare: Proptype.string,
   cardTrunfo: Proptype.bool,
+  hasTrunfo: Proptype.bool,
   isSaveButtonDisabled: Proptype.bool,
   onInputChange: Proptype.func,
   onSaveButtonClick: Proptype.func,

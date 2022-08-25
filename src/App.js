@@ -11,8 +11,26 @@ class App extends React.Component {
     cardAttr3: '',
     cardImage: '',
     cardRare: '',
-    cardTrunfo: '',
+    cardTrunfo: false,
+    hasTrunfo: false,
     isSaveButtonDisabled: true,
+  };
+
+  onSaveButtonClick = (event) => {
+    event.preventDefault();
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) {
+      this.setState({ hasTrunfo: true });
+    }
+    this.setState({
+      cardName: '',
+      cardDescription: '',
+      cardImage: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardRare: 'normal',
+    });
   };
 
   numMax = (numero) => {
@@ -68,6 +86,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
     } = this.state;
     return (
@@ -82,8 +101,10 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
